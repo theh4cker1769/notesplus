@@ -5,7 +5,7 @@ include('functions.php');
 
 session_start();
 
-if(isset($_POST['loginBtn'])){
+if (isset($_POST['signupBtn'])) {
     signup($conn);
 }
 
@@ -37,19 +37,24 @@ if(isset($_POST['loginBtn'])){
                     </div>
                     <form method="POST">
                         <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name">
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" class="form-control" name="email">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password</label>
-                            <a href="#" class="forgot mx-1">
-                                Forgot?
-                            </a>
                             <input type="password" class="form-control" name="pass">
                         </div>
-                        <button type="submit" class="btn btn-custom" name="loginBtn">Submit</button>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" name="cpass">
+                        </div>
+                        <button type="submit" class="btn btn-custom" name="signupBtn">Sign Up</button>
                     </form>
-                    <p class="not-a-member">Not a member? <a href="#" class="signup mx-1">Sign up now</a></p>
+                    <p class="not-a-member">Already Have an Account? <a href="login.php" class="signup mx-1">Login Now</a></p>
                 </div>
             </div>
         </div>

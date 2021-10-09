@@ -26,7 +26,7 @@ check_login($conn);
 <body>
     <div class="container">
         <h1>Notesplus</h1>
-
+        <a href="logout.php">Logout</a>
         <div class="row col-container">
             <?php
                 $query = "SELECT * FROM subjects";

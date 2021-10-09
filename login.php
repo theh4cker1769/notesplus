@@ -47,9 +47,9 @@ if(isset($_POST['loginBtn'])){
                             </a>
                             <input type="password" class="form-control" name="pass">
                         </div>
-                        <button type="submit" class="btn btn-custom" name="loginBtn">Submit</button>
+                        <button type="submit" class="btn btn-custom" name="loginBtn">Login</button>
                     </form>
-                    <p class="not-a-member">Not a member? <a href="#" class="signup mx-1">Sign up now</a></p>
+                    <p class="not-a-member">Not a member? <a href="signup.php" class="signup mx-1">Sign up now</a></p>
                 </div>
             </div>
         </div>
