@@ -6,7 +6,7 @@ $dbpass = '';
 $dbname = 'notesplus';
 
 if(!$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)){
-    echo 'Hello World';
+    die("You Stupid");
 }
 
 

@@ -34,7 +34,7 @@ function login($conn)
             header('Location: index.php');
         }
     } else {
-        echo '<script>alert("Something Is Wrong I can feel it")</script>';
+        echo '<script>alert("Wrong I can feel it")</script>';
     }
 }
 
