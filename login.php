@@ -42,9 +42,6 @@ if(isset($_POST['loginBtn'])){
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password</label>
-                            <a href="#" class="forgot mx-1">
-                                Forgot?
-                            </a>
                             <input type="password" class="form-control" name="pass">
                         </div>
                         <button type="submit" class="btn btn-custom" name="loginBtn">Login</button>

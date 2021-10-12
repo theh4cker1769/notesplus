@@ -234,3 +234,35 @@ li {
 .files-info h3 {
     margin-bottom: 10px;
 }
+
+
+/* Subject Add */
+
+.addSubBtn {
+    position: absolute;
+    display: inline-block;
+    width: auto;
+    right: 50px;
+    bottom: 50px;
+    font-size: 25px;
+    padding: 8px 15.5px;
+}
+
+.addSubModal .modal-header {
+    border-bottom: 0;
+}
+
+.addSubModal .btn-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.addSubModal .modal-title {
+    text-align: center;
+    margin: 22px auto;
+}
+
+.addSubModal .modal-body {
+    padding: 1.5rem;
+}

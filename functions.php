@@ -18,6 +18,7 @@ function check_login($conn)
     die();
 }
 
+
 function login($conn)
 {
     $email = $_POST['email'];
@@ -38,6 +39,7 @@ function login($conn)
     }
 }
 
+
 function signup($conn)
 {
     $name = $_POST['name'];
@@ -54,4 +56,13 @@ function signup($conn)
     } else {
         echo '<script>alert("Something Is Wrong I can feel it")</script>';
     }
+}
+
+
+function addSub($conn){
+    $subName = $_POST['addSubName'];
+    $subDes = $_POST['addSubDes'];
+
+    $query = "INSERT INTO `subjects`(`subject`, `description`) VALUES ('$subName','$subDes')";
+    mysqli_query($conn, $query);
 }
