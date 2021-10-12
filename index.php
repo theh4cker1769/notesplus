@@ -31,7 +31,7 @@ if (isset($_POST['addSub'])) {
     <div class="container">
         <h1>Notesplus</h1>
         <a href="logout.php">Logout</a>
-        <div class="row col-container">
+        <div class="row g-4">
             <?php
             $query = "SELECT * FROM subjects";
             $result = mysqli_query($conn, $query);
@@ -90,6 +90,11 @@ if (isset($_POST['addSub'])) {
     <script src="js/fontawesome.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </body>
 
 </html>

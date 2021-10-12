@@ -62,7 +62,9 @@ function signup($conn)
 function addSub($conn){
     $subName = $_POST['addSubName'];
     $subDes = $_POST['addSubDes'];
+    
 
     $query = "INSERT INTO `subjects`(`subject`, `description`) VALUES ('$subName','$subDes')";
     mysqli_query($conn, $query);
+
 }
