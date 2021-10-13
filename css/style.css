@@ -229,7 +229,8 @@ li {
 }
 
 .files-info .card {
-    padding: 30px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .files-info h3 {
@@ -257,11 +258,16 @@ li {
     position: absolute;
     right: 20px;
     top: 20px;
+    z-index: 999;
 }
 
 .addSubModal .modal-title {
     text-align: center;
-    margin: 22px auto;
+    margin: 10px auto 22px;
+}
+
+.addSubModal .modal-header {
+    padding: 0;
 }
 
 .addSubModal .modal-body {

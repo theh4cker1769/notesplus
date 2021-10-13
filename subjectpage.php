@@ -15,6 +15,11 @@ $result = mysqli_query($conn, $query);
 $queryMain = "SELECT * FROM subjects WHERE id = '$getsid'";
 $resultMain = mysqli_query($conn, $queryMain);
 $getDataMain = mysqli_fetch_assoc($resultMain);
+
+
+if (isset($_POST['uploadNotes'])) {
+    uploadNotes($conn);
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +42,8 @@ $getDataMain = mysqli_fetch_assoc($resultMain);
             <div class="card">
                 <div class="card-body">
 
-                    <h1><?php echo $getDataMain['subject']?></h1>
-                    <p><?php echo $getDataMain['description']?></p>
+                    <h1><?php echo $getDataMain['subject'] ?></h1>
+                    <p><?php echo $getDataMain['description'] ?></p>
                 </div>
             </div>
         </section>
@@ -53,6 +58,9 @@ $getDataMain = mysqli_fetch_assoc($resultMain);
                             <h4><b>Docs:</b>20</h4>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#uploadNotes">
+                        Upload Notes
+                    </button>
                 </section>
             </div>
             <div class="col-sm-9">
@@ -91,9 +99,38 @@ $getDataMain = mysqli_fetch_assoc($resultMain);
 
     </div>
 
+
+    <!-- Modal Upload Notes-->
+    <div class="modal fade addSubModal" id="uploadNotes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="modal-title" id="exampleModalLabel">Enter Notes Details</h2>
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="uploadFileDet" placeholder="File Details">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" id="inputGroupFile02" name="uploadFile">
+                        </div>
+                        <button type="submit" class="btn btn-custom" name="uploadNotes">Upload</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/fontawesome.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </body>
 
 </html>

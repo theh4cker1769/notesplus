@@ -59,12 +59,47 @@ function signup($conn)
 }
 
 
-function addSub($conn){
+function addSub($conn)
+{
     $subName = $_POST['addSubName'];
     $subDes = $_POST['addSubDes'];
-    
+
 
     $query = "INSERT INTO `subjects`(`subject`, `description`) VALUES ('$subName','$subDes')";
     mysqli_query($conn, $query);
+}
 
+function uploadNotes($conn)
+{
+    $statusMsg = '';
+
+    $targetDir = "uploads/";
+    $fileName = basename($_FILES["uploadFile"]["name"]);
+    $targetFilePath = $targetDir . $fileName;
+    $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+    
+    if(!empty($_FILES["uploadFile"]["name"])){
+        $allowTypes = array('jpg','png','jpeg','pdf','docx');
+        if(in_array($fileType,$allowTypes)){
+            if(move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $targetFilePath)){
+                $query = "INSERT INTO `subjectpage`(`filename`, `uploaded_on`) VALUES ('$fileName',NOW())";
+                $result = mysqli_query($conn, $query);
+                if($result){
+                    $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                }else{
+                    $statusMsg = "File upload failed, please try again.";
+                } 
+            }
+            else{
+                $statusMsg = "Sorry, there was an error uploading your file.";
+            }
+        }else{
+            $statusMsg = 'Sorry, only JPG, JPEG, PNG, DOC & PDF files are allowed to upload.';
+        }
+    }else{
+        $statusMsg = 'Please select a file to upload.';
+    }
+
+    echo $statusMsg;
 }

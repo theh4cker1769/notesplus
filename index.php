@@ -70,7 +70,9 @@ if (isset($_POST['addSub'])) {
     <div class="modal fade addSubModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <div class="modal-body">
                     <h2 class="modal-title" id="exampleModalLabel">Enter Subject Details</h2>
                     <form method="POST">
