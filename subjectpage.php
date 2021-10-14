@@ -20,6 +20,10 @@ $getDataMain = mysqli_fetch_assoc($resultMain);
 if (isset($_POST['uploadNotes'])) {
     uploadNotes($conn);
 }
+
+if (isset($_POST['deleteSub'])) {
+    deleteSub($conn);
+}
 ?>
 
 <!DOCTYPE html>
@@ -61,6 +65,11 @@ if (isset($_POST['uploadNotes'])) {
                     <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#uploadNotes">
                         Upload Notes
                     </button>
+                    <form method="POST">
+                        <button type="submit" class="btn btn-custom bg-red" name="deleteSub">
+                            Delete Subject
+                        </button>
+                    </form>
                 </section>
             </div>
             <div class="col-sm-9">
@@ -70,18 +79,18 @@ if (isset($_POST['uploadNotes'])) {
                             <?php
                             for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                                 $getData = mysqli_fetch_assoc($result);
-
+                                $dateOnly = $getData['uploaded_on'];
                             ?>
                                 <div class="notes-box">
                                     <div class="row align-items-center">
                                         <div class="col-10">
 
-                                            <h4><?php echo $getData['filename']; ?></h4>
+                                            <h4><?php echo $getData['filedetails']; ?></h4>
 
                                             <div class="clearfix">
-                                                <p>Oct 3 2021</p><span>PDF</span>
+                                                <p><?php echo date('M d, Y', strtotime($dateOnly)) ?></p><span>PDF</span>
                                             </div>
-                                            <a href="#" class="btn-custom">Download</a>
+                                            <a href="uploads/<?php echo $getData['filename'] ?>" class="btn-custom" download>Download</a>
                                         </div>
                                         <div class="col-2 border-left">
                                             <img class="img-fluid rounded-circle" src="images/profile.jpg" alt="Profile">

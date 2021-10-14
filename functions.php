@@ -71,22 +71,24 @@ function addSub($conn)
 
 function uploadNotes($conn)
 {
+    $getsid = $_GET['sid'];
     $statusMsg = '';
 
+    $fileDetails = $_POST['uploadFileDet'];
     $targetDir = "uploads/";
     $fileName = basename($_FILES["uploadFile"]["name"]);
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-
     
     if(!empty($_FILES["uploadFile"]["name"])){
         $allowTypes = array('jpg','png','jpeg','pdf','docx');
         if(in_array($fileType,$allowTypes)){
             if(move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $targetFilePath)){
-                $query = "INSERT INTO `subjectpage`(`filename`, `uploaded_on`) VALUES ('$fileName',NOW())";
+                $query = "INSERT INTO `subjectpage`(`sid`, `filedetails`, `filename`) VALUES ('$getsid', '$fileDetails', '$fileName')";
                 $result = mysqli_query($conn, $query);
                 if($result){
                     $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                    header("Refresh:0");
                 }else{
                     $statusMsg = "File upload failed, please try again.";
                 } 
@@ -102,4 +104,13 @@ function uploadNotes($conn)
     }
 
     echo $statusMsg;
+}
+
+function deleteSub($conn){
+    $getsid = $_GET['sid'];
+
+    $query = "DELETE FROM `subjects` WHERE `id` = $getsid";
+    mysqli_query($conn, $query);
+
+    header("Location: index.php");
 }

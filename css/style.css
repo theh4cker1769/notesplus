@@ -68,6 +68,12 @@ li {
     box-shadow: 0 0 0 0.25rem #78cc6d50;
 }
 
+.bg-red {
+    background-color: red;
+    border-color: red;
+    margin-top: 15px;
+}
+
 
 /* Bootstrap Global Changes */
 
