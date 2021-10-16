@@ -79,38 +79,57 @@ function uploadNotes($conn)
     $fileName = basename($_FILES["uploadFile"]["name"]);
     $targetFilePath = $targetDir . $fileName;
     $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-    
-    if(!empty($_FILES["uploadFile"]["name"])){
-        $allowTypes = array('jpg','png','jpeg','pdf','docx');
-        if(in_array($fileType,$allowTypes)){
-            if(move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $targetFilePath)){
+
+    if (!empty($_FILES["uploadFile"]["name"])) {
+        $allowTypes = array('jpg', 'png', 'jpeg', 'pdf', 'docx');
+        if (in_array($fileType, $allowTypes)) {
+            if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $targetFilePath)) {
                 $query = "INSERT INTO `subjectpage`(`sid`, `filedetails`, `filename`) VALUES ('$getsid', '$fileDetails', '$fileName')";
                 $result = mysqli_query($conn, $query);
-                if($result){
-                    $statusMsg = "The file ".$fileName. " has been uploaded successfully.";
+                if ($result) {
+                    $statusMsg = "The file " . $fileName . " has been uploaded successfully.";
                     header("Refresh:0");
-                }else{
+                } else {
                     $statusMsg = "File upload failed, please try again.";
-                } 
-            }
-            else{
+                }
+            } else {
                 $statusMsg = "Sorry, there was an error uploading your file.";
             }
-        }else{
+        } else {
             $statusMsg = 'Sorry, only JPG, JPEG, PNG, DOC & PDF files are allowed to upload.';
         }
-    }else{
+    } else {
         $statusMsg = 'Please select a file to upload.';
     }
 
     echo $statusMsg;
 }
 
-function deleteSub($conn){
+function deleteSub($conn)
+{
     $getsid = $_GET['sid'];
 
     $query = "DELETE FROM `subjects` WHERE `id` = $getsid";
     mysqli_query($conn, $query);
 
     header("Location: index.php");
+}
+
+function role($conn)
+{
+    if (isset($_SESSION['email'])) {
+        $email = $_SESSION['email'];
+        $query = "SELECT role from users WHERE email = '$email'";
+        $result = mysqli_query($conn, $query);
+
+        $row = mysqli_fetch_assoc($result);
+
+        if ($row['role'] == 'admin') {
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
 }

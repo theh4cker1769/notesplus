@@ -62,9 +62,17 @@ if (isset($_POST['addSub'])) {
     </div>
 
     <!-- Add Subjects Button -->
-    <button type="button" class="btn btn-custom rounded-circle addSubBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <i class="fas fa-plus"></i>
-    </button>
+    <?php
+
+    if (role($conn)) {
+
+    ?>
+        <button type="button" class="btn btn-custom rounded-circle addSubBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-plus"></i>
+        </button>
+    <?php
+    }
+    ?>
 
     <!-- Modal Add Subjects-->
     <div class="modal fade addSubModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
