@@ -24,23 +24,14 @@ if (isset($_POST['uploadNotes'])) {
 if (isset($_POST['deleteSub'])) {
     deleteSub($conn);
 }
+
+
+include('includes/head.php');
+include('includes/navbar.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
 
-<body>
     <div class="container">
         <section class="subdetails">
             <div class="card">
@@ -65,11 +56,19 @@ if (isset($_POST['deleteSub'])) {
                     <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#uploadNotes">
                         Upload Notes
                     </button>
-                    <form method="POST">
-                        <button type="submit" class="btn btn-custom bg-red" name="deleteSub">
-                            Delete Subject
-                        </button>
-                    </form>
+                    <?php
+
+                    if (role($conn)) {
+
+                    ?>
+                        <form method="POST">
+                            <button type="submit" class="btn btn-custom bg-red" name="deleteSub">
+                                Delete Subject
+                            </button>
+                        </form>
+                    <?php
+                    }
+                    ?>
                 </section>
             </div>
             <div class="col-sm-9">
@@ -132,14 +131,4 @@ if (isset($_POST['deleteSub'])) {
         </div>
     </div>
 
-    <script src="js/fontawesome.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
-    <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
-    </script>
-</body>
-
-</html>
+<?php include('includes/foot.php') ?>
