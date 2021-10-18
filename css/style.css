@@ -180,6 +180,15 @@ li {
     margin-bottom: 20px;
 }
 
+.name {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.name span {
+    color: var(--primary);
+}
+
 
 /* Subject Page */
 

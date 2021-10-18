@@ -133,3 +133,11 @@ function role($conn)
         return false;
     }
 }
+
+function getName($conn){
+    $email = $_SESSION['email'];
+    $query = "SELECT name FROM users WHERE email= '$email'";
+    $result = mysqli_query($conn, $query);
+    $nameGet = mysqli_fetch_assoc($result);
+    $_SESSION['name'] = $nameGet['name'];
+}

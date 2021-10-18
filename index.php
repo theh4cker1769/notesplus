@@ -15,13 +15,14 @@ include('includes/head.php');
 
 $page = 'home';
 include('includes/navbar.php');
-
+getName($conn);
 ?>
 
 <?php //$page = 'home'; include 'includes/navbar.php' ?>
 
 <div class="container">
     <h1>Notesplus</h1>
+    <h3 class="name">Welcome, <span> <?php echo $_SESSION['name'];?></span></h3>
     <div class="row g-4">
         <?php
         $query = "SELECT * FROM subjects";
