@@ -141,3 +141,25 @@ function getName($conn){
     $nameGet = mysqli_fetch_assoc($result);
     $_SESSION['name'] = $nameGet['name'];
 }
+
+
+function searchBar($conn){
+    $searchValue = $_POST['searchValue'];
+    $min_length = 3;
+    if(strlen($searchValue)>=$min_length){
+        $query = "SELECT * FROM subjectpage WHERE (`filedetails` LIKE '%".$searchValue."%')";
+        $searchFiles = mysqli_query($conn, $query);
+        if(mysqli_num_rows($searchFiles) > 0){
+			while($results = mysqli_fetch_array($searchFiles)){
+			
+				$_SESSION['searchResult'] = $results;
+			}
+		}
+		else{
+			echo "No results";
+		}
+    }
+	else{
+		echo "Minimum length is ".$min_length;
+	}
+}
