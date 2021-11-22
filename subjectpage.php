@@ -86,6 +86,18 @@ include('includes/navbar.php');
                 <div class="card">
                     <div class="card-body withoutSearch">
                         <?php
+                        $search = '';
+                        if(isset($_POST['searchBtn'])){
+                            $search = $_POST['searchValue'] ?? '';
+                        }
+                        
+                        if ($search) {
+                            $query = "SELECT * FROM subjectpage WHERE `filedetails` LIKE '%$search%' AND sid = '$getsid'";
+                            $result =  mysqli_query($conn, $query);
+                        } else {
+                            $query = "SELECT * FROM subjectpage WHERE sid = '$getsid'";
+                            $result =  mysqli_query($conn, $query);
+                        }
                         for ($i = 0; $i < mysqli_num_rows($result); $i++) {
                             $getData = mysqli_fetch_assoc($result);
                             $dateOnly = $getData['uploaded_on'];
